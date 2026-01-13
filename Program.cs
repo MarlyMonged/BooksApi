@@ -1,4 +1,7 @@
 
+using BooksApi.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace BooksApi
 {
     public class Program
@@ -12,6 +15,8 @@ namespace BooksApi
             builder.Services.AddControllers();
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
+            builder.Services.AddDbContext<ApplicationDbContext>(options => 
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             var app = builder.Build();
 
