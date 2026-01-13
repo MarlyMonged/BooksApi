@@ -19,6 +19,7 @@ namespace BooksApi
             if (app.Environment.IsDevelopment())
             {
                 app.MapOpenApi();
+                app.UseSwaggerUI(op=>op.SwaggerEndpoint("/openapi/v1.json","V1"));
             }
 
             app.UseHttpsRedirection();
