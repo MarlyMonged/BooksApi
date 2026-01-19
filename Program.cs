@@ -19,7 +19,7 @@ namespace BooksApi
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             var app = builder.Build();
-
+            DataSeeder.SeedData(app);
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
