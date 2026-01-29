@@ -7,7 +7,7 @@ namespace BooksApi.Migrations
     /// <inheritdoc />
     public partial class AddManyToMany : Migration
     {
-        /// <inheritdoc />
+        /// <inheritdoc />w
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
