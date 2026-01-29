@@ -1,4 +1,6 @@
-﻿namespace BooksApi.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace BooksApi.Models
 {
     public class Book
     {
@@ -20,6 +22,11 @@
         public string CoverUrl { get; set; }
 
         public DateTime DateAdded { get; set; }  = DateTime.Now;
+
+        [ForeignKey("Publisher")]
+        public int PublisherId { get; set; }
+
+        public Publisher Publisher { get; set; }
     }
 
        
