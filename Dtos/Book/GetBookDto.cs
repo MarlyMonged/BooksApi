@@ -18,5 +18,8 @@
         public string CoverUrl { get; set; }
 
         public DateTime DateAdded { get; set; } = DateTime.Now;
+
+        public int PublisherId { get; set; }
+
     }
 }
