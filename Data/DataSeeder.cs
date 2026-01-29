@@ -10,7 +10,17 @@ namespace BooksApi.Data
 
             var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
 
-            if(!context.Books.Any())
+            if (!context.Publishers.Any())
+            {
+                context.Publishers.Add(
+                    new Publisher { Name = "Marly" }
+                   
+                );
+                context.SaveChanges();
+            }
+
+
+            if (!context.Books.Any())
             {
                 context.Books.AddRange(new Book
                 {
@@ -22,7 +32,8 @@ namespace BooksApi.Data
                     Genre = "Biography",
                     Author = "Author 1",
                     CoverUrl = "https://example.com/firstbookcover.jpg",
-                    DateAdded = DateTime.Now
+                    DateAdded = DateTime.Now,
+                    PublisherId = 1
                 },
                 new Book
                 {
@@ -32,7 +43,9 @@ namespace BooksApi.Data
                     Genre = "Science Fiction",
                     Author = "Author 2",
                     CoverUrl = "https://example.com/secondbookcover.jpg",
-                    DateAdded = DateTime.Now
+                    DateAdded = DateTime.Now,
+                    PublisherId = 1
+
                 });
                 context.SaveChanges();
 
