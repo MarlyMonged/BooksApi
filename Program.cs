@@ -23,7 +23,7 @@ namespace BooksApi
             builder.Services.AddAutoMapper(cfg=> { },typeof(Program));
 
             var app = builder.Build();
-            DataSeeder.SeedData(app);
+            //DataSeeder.SeedData(app);
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
