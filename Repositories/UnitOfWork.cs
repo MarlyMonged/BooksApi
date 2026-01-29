@@ -8,10 +8,17 @@ namespace BooksApi.Repositories
     {
         private readonly ApplicationDbContext _context;
         public IGenericRepository<Book> Books { get;private set;  }
+
+        public IGenericRepository<Author> Authors { get; private set; }
+
+        public IGenericRepository<Publisher> Publishers { get; private set; }
+
         public UnitOfWork(ApplicationDbContext context)
         {
             _context = context;
             Books = new GenericRepository<Book>(_context);
+            Authors = new GenericRepository<Author>(_context);
+            Publishers = new GenericRepository<Publisher>(_context);
         }
 
         public void Dispose()
