@@ -10,5 +10,9 @@
         public string Genre { get; set; } = string.Empty;
         public string Author { get; set; } = string.Empty;
         public string CoverUrl { get; set; } = string.Empty;
+
+        public int PublisherId { get; set; }
+
+        public List<int> AuthorIds { get; set; } 
     }
 }
