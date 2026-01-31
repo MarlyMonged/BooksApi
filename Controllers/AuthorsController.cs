@@ -27,7 +27,7 @@ namespace BooksApi.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var author = _mapper.Map<Author>(createAuthorDto);
+            var author = _mapper.Map<Author>(createAuthorDto); 
 
             await _unitOfWork.Authors.AddAsync(author);
             await _unitOfWork.Save();
