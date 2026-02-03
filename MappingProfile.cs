@@ -16,7 +16,12 @@ namespace BooksApi
                 opt => opt.MapFrom(src => src.BookAuthors.Select(b => b.Author.Name)));
             CreateMap<CreateBookDto, Book>();
             CreateMap<UpdateBookDto, Book>();
-            CreateMap<CreateAuthorDto, Author>();
+            CreateMap<Author, AuthorDto>().ReverseMap();
+
+            CreateMap<Author, AuthorWithBooksDto>()
+                .ForMember(des => des.Books,
+                opt => opt.MapFrom(src => src.BookAuthors.Select(b => b.Book.Title)));
+
             CreateMap<CreatePublisherDto, Publisher>();
         }
     }

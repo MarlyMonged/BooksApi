@@ -12,7 +12,7 @@ namespace BooksApi.Repositories
 
         public IBookRepository Books { get; private set; }
 
-        public IGenericRepository<Author> Authors { get; private set; }
+        public IAuthorRepository Authors { get; private set; }
 
         public IGenericRepository<Publisher> Publishers { get; private set; }
 
@@ -23,7 +23,7 @@ namespace BooksApi.Repositories
             _context = context;
             _mapper = mapper;
             Books = new BookRepository(_context,_mapper);
-            Authors = new GenericRepository<Author>(_context);
+            Authors = new AuthorRepository(_context);
             Publishers = new GenericRepository<Publisher>(_context);
         }
 

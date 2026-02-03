@@ -20,7 +20,13 @@ namespace BooksApi.Repositories
         }
         public async Task<Book> GetBookWithAuthors(int id)
         {
-            return await _context.Books.Include(ba=>ba.BookAuthors).ThenInclude(b=>b.Author).AsNoTracking().FirstOrDefaultAsync(b => b.Id == id);
+            var book = await _context.Books
+                .Include(ba => ba.BookAuthors)
+                .ThenInclude(b => b.Author)
+                .AsNoTracking()
+                .FirstOrDefaultAsync(b => b.Id == id);
+
+            return book!;
 
             
         }
