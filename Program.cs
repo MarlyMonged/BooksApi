@@ -2,6 +2,7 @@
 using BooksApi.Data;
 using BooksApi.Interfaces;
 using BooksApi.Repositories;
+using BooksApi.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace BooksApi
@@ -20,6 +21,8 @@ namespace BooksApi
             builder.Services.AddDbContext<ApplicationDbContext>(options => 
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
             builder.Services.AddScoped<IUnitOfWork,UnitOfWork>();
+            builder.Services.AddScoped<IBookService,BookService>();
+            builder.Services.AddScoped<IBookService, BookService>();
             builder.Services.AddAutoMapper(cfg=> { },typeof(Program));
 
             var app = builder.Build();

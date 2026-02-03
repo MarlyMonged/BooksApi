@@ -1,6 +1,7 @@
 ﻿using BooksApi.Data;
 using BooksApi.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace BooksApi.Repositories
 {
@@ -21,6 +22,8 @@ namespace BooksApi.Repositories
         public async Task<T?> GetByIdAsync(int id)
         {
             return await _context.Set<T>().FindAsync(id);
+
+
         }
 
         public async Task<T> AddAsync(T entity)

@@ -1,4 +1,6 @@
-﻿namespace BooksApi.Interfaces
+﻿using System.Linq.Expressions;
+
+namespace BooksApi.Interfaces
 {
     public interface IGenericRepository<T> where T : class
     {

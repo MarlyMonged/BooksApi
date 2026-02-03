@@ -30,7 +30,6 @@ namespace BooksApi.Data
                     DateRead = DateTime.Now.AddDays(-10),
                     Rate = 4,
                     Genre = "Biography",
-                    Author = "Author 1",
                     CoverUrl = "https://example.com/firstbookcover.jpg",
                     DateAdded = DateTime.Now,
                     PublisherId = 1
@@ -41,7 +40,6 @@ namespace BooksApi.Data
                     Description = "Description 2",
                     IsRead = false,
                     Genre = "Science Fiction",
-                    Author = "Author 2",
                     CoverUrl = "https://example.com/secondbookcover.jpg",
                     DateAdded = DateTime.Now,
                     PublisherId = 1

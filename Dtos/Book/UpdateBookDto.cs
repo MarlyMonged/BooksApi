@@ -8,7 +8,11 @@
         public DateTime? DateRead { get; set; }
         public int? Rate { get; set; } = 0;
         public string Genre { get; set; } = string.Empty;
-        public string Author { get; set; } = string.Empty;
+       
         public string CoverUrl { get; set; } = string.Empty;
+
+        public int PublisherId { get; set; }
+
+
     }
 }
