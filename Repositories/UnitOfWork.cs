@@ -14,7 +14,7 @@ namespace BooksApi.Repositories
 
         public IAuthorRepository Authors { get; private set; }
 
-        public IGenericRepository<Publisher> Publishers { get; private set; }
+        public IPublisherRepository Publishers { get; private set; }
 
        
 
@@ -24,7 +24,7 @@ namespace BooksApi.Repositories
             _mapper = mapper;
             Books = new BookRepository(_context,_mapper);
             Authors = new AuthorRepository(_context);
-            Publishers = new GenericRepository<Publisher>(_context);
+            Publishers = new PublisherRepository(_context);
         }
 
         public void Dispose()

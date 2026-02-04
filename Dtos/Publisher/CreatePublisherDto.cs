@@ -3,6 +3,6 @@
     public class CreatePublisherDto
     {
         public string Name { get; set; }
-
+        
     }
 }

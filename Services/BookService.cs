@@ -65,7 +65,7 @@ namespace BooksApi.Services
                 {
                     throw new ArgumentException($"Author with ID {authorId} does not exist.", nameof(dto.AuthorIds));
                 }
-
+                
                
                 
             }
@@ -76,14 +76,10 @@ namespace BooksApi.Services
 
             var book = _mapper.Map<Book>(dto);
 
-            book.BookAuthors = dto.AuthorIds.Select(authorId => new BookAuthor
-            {
-                AuthorId = authorId
-            }).ToList();
 
             await _unitOfWork.Books.AddAsync(book);
             await _unitOfWork.Save();
-
+            
             return book.Id;
 
         }

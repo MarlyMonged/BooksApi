@@ -24,6 +24,7 @@ namespace BooksApi
             builder.Services.AddScoped<IBookService,BookService>();
             builder.Services.AddScoped<IBookService, BookService>();
             builder.Services.AddScoped<IAuthorService, AuthorService>();
+            builder.Services.AddScoped<IPublisherService, PublisherService>();
             builder.Services.AddAutoMapper(cfg=> { },typeof(Program));
 
             var app = builder.Build();

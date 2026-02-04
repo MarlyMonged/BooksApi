@@ -6,7 +6,7 @@ namespace BooksApi.Interfaces
     {
        IBookRepository Books {  get; }
        IAuthorRepository Authors {  get; }
-       IGenericRepository<Publisher> Publishers {  get; }
+       IPublisherRepository Publishers {  get; }
 
         Task<int> Save();
     }
