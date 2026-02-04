@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using BooksApi.Dtos.Publisher;
+using BooksApi.Exceptions;
 using BooksApi.Interfaces;
 using BooksApi.Models;
+using System.Text.RegularExpressions;
 
 namespace BooksApi.Services
 {
@@ -36,11 +38,11 @@ namespace BooksApi.Services
 
         }
 
-
+        
         public async Task<int> CreatePublisherAsync(CreatePublisherDto dto)
         {
-            if(string.IsNullOrWhiteSpace(dto.Name))
-                throw new ArgumentException("Publisher name cannot be null or empty.");
+           if(NameStartsWithNumbers(dto.Name))
+                throw new PublisherNameException("Publisher name cannot start with a number.",dto.Name); 
 
              var publisher = _mapper.Map<Publisher>(dto);
 
@@ -76,5 +78,12 @@ namespace BooksApi.Services
 
         }
 
+        private bool NameStartsWithNumbers(string name)
+        {
+            return Regex.IsMatch(name, @"^\d");
+
+        }
+
+       
     }
 }

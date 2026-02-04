@@ -12,5 +12,7 @@ namespace BooksApi.Services
         Task<bool> UpdatePublisherAsync(int publisherId, CreatePublisherDto dto);
 
         Task<bool> DeletePublisherAsync(int publisherId);
+
+        
     }
 }

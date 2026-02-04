@@ -1,5 +1,6 @@
 
 using BooksApi.Data;
+using BooksApi.Exceptions;
 using BooksApi.Interfaces;
 using BooksApi.Repositories;
 using BooksApi.Services;
@@ -40,7 +41,7 @@ namespace BooksApi
 
             app.UseAuthorization();
 
-
+            app.UseMiddleware<CustomExceptionMiddleWare>();
             app.MapControllers();
 
             app.Run();

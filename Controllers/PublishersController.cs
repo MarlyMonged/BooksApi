@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BooksApi.Dtos.Author;
 using BooksApi.Dtos.Publisher;
+using BooksApi.Exceptions;
 using BooksApi.Interfaces;
 using BooksApi.Models;
 using BooksApi.Services;
@@ -44,19 +45,14 @@ namespace BooksApi.Controllers
             return Ok(publisher);
         }
 
-        [HttpPost("Create Publisher")]
+        [HttpPost("CreatePublisher")]
         public async Task<IActionResult> CreatePublisher([FromBody] CreatePublisherDto createPublisherDto)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var publisher = _mapper.Map<Publisher>(createPublisherDto);
-
-            await _unitOfWork.Publishers.AddAsync(publisher);
-            await _unitOfWork.Save();
-
-            return Ok(publisher);
-
+            var publisherId = await _publisherService.CreatePublisherAsync(createPublisherDto);
+            return CreatedAtAction(nameof(GetPublisherWithBooksAndAuthors), new { id = publisherId }, createPublisherDto);
 
         }
         [HttpPut("UpdatePublisher/{id:int}")]
