@@ -5,6 +5,7 @@ using BooksApi.Interfaces;
 using BooksApi.Repositories;
 using BooksApi.Services;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 
 namespace BooksApi
 {
@@ -15,7 +16,10 @@ namespace BooksApi
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-
+            Log.Logger = new LoggerConfiguration()
+            .ReadFrom.Configuration(builder.Configuration)
+            .CreateLogger();
+            builder.Host.UseSerilog();
             builder.Services.AddControllers();
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();

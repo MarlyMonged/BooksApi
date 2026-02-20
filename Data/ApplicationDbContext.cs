@@ -10,6 +10,8 @@ namespace BooksApi.Data
 
         public DbSet<Author> Authors { get; set; }
 
+        public DbSet<Log> Logs { get; set; }
+
         public DbSet<BookAuthor>BookAuthors { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 

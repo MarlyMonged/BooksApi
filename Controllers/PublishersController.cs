@@ -20,16 +20,19 @@ namespace BooksApi.Controllers
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly IPublisherService _publisherService;
+        private readonly ILogger<PublishersController> _logger;
 
-        public PublishersController(IUnitOfWork unitOfWork, IMapper mapper, IPublisherService publisherService)
+        public PublishersController(IUnitOfWork unitOfWork, IMapper mapper, IPublisherService publisherService, ILogger<PublishersController> logger)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _publisherService = publisherService;
+            _logger = logger;
         }
         [HttpGet("GetAllPublishers")]
         public async Task<IActionResult> GetAllPublishers()
         {
+            _logger.LogInformation("Fetching all publishers");
             var publishers = await _publisherService.GetAllPublishers();
             return Ok(publishers);
         }
