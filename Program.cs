@@ -63,6 +63,7 @@ namespace BooksApi
 
             var app = builder.Build();
             //DataSeeder.SeedData(app);
+            DataSeeder.SeedRoles(app).Wait();
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {

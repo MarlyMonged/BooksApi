@@ -3,6 +3,8 @@ using BooksApi.Dtos.Author;
 using BooksApi.Interfaces;
 using BooksApi.Models;
 using BooksApi.Services;
+using BooksApi.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,6 +12,7 @@ namespace BooksApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = UserRoles.Author)]
     public class AuthorsController : ControllerBase
     {
        

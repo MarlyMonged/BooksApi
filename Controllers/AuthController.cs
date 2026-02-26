@@ -53,6 +53,25 @@ namespace BooksApi.Controllers
             if (!result.Succeeded)
                 return BadRequest($"User {dto.Username} creation failed! Please check user details and try again.");
 
+            switch(dto.Role)
+            {
+                case "Admin":
+                    await _userManager.AddToRoleAsync(user,UserRoles.Admin);
+                    break;
+
+                case "Author":
+                    await _userManager.AddToRoleAsync(user, UserRoles.Author);
+                    break;
+
+                case "Publisher":
+                    await _userManager.AddToRoleAsync(user, UserRoles.Publisher);
+                    break;
+
+                default:
+                    await _userManager.AddToRoleAsync(user, UserRoles.User);
+                    break;
+            }
+
             return Created(nameof(Register), $"User {dto.Username} Created Successfully.");
         }
         [HttpPost("Login")]
@@ -83,13 +102,20 @@ namespace BooksApi.Controllers
                 new Claim(JwtRegisteredClaimNames.Email, user.Email!),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
+
+            var roles = await _userManager.GetRolesAsync(user);
+            foreach(var role in roles)
+            {
+                claims.Add(new Claim(ClaimTypes.Role, role));
+            }
+
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:SecretKey"]!));
 
             var token = new JwtSecurityToken(
                 issuer: _configuration["Jwt:Issuer"],
                 audience: _configuration["Jwt:Audience"],
                 claims: claims,
-                expires: DateTime.UtcNow.AddMinutes(1),
+                expires: DateTime.UtcNow.AddMinutes(10),
                 signingCredentials: new SigningCredentials(key, SecurityAlgorithms.HmacSha256)
             );
 
