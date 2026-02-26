@@ -36,7 +36,7 @@ namespace BooksApi
             builder.Services.AddScoped<IAuthorService, AuthorService>();
             builder.Services.AddScoped<IPublisherService, PublisherService>();
             builder.Services.AddAutoMapper(cfg=> { },typeof(Program));
-            builder.Services.AddIdentity<IdentityUser,IdentityRole>()
+            builder.Services.AddIdentity<ApplicationUser,IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
             builder.Services.AddAuthentication(options =>
@@ -71,7 +71,7 @@ namespace BooksApi
             }
 
             app.UseHttpsRedirection();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseMiddleware<CustomExceptionMiddleWare>();

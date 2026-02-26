@@ -5,6 +5,7 @@ using BooksApi.Exceptions;
 using BooksApi.Interfaces;
 using BooksApi.Models;
 using BooksApi.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -29,6 +30,7 @@ namespace BooksApi.Controllers
             _publisherService = publisherService;
             _logger = logger;
         }
+        [Authorize]
         [HttpGet("GetAllPublishers")]
         public async Task<IActionResult> GetAllPublishers()
         {

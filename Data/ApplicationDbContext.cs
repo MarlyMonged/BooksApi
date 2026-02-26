@@ -1,4 +1,5 @@
 ﻿using BooksApi.Models;
+using BooksApi.ViewModels;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,6 +13,8 @@ namespace BooksApi.Data
         public DbSet<Author> Authors { get; set; }
 
         public DbSet<Log> Logs { get; set; }
+
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
 
         public DbSet<BookAuthor>BookAuthors { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
